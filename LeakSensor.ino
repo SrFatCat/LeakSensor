@@ -26,13 +26,12 @@ const char auth[] = "10e3db2a38084530bac9f105d87f7c42";
 
 Adafruit_NeoPixel stripLED(LEAK_CHANELS, PIN_LED_STRIP, NEO_GRB);
 
-enum EColors {BLACK = 0, RED = 0xFF0000, GREEN = 0x00FF00, WHITE = 0xFFFFFF, YELLOW = 0xFFFF00};
+enum EColors {BLACK = 0, RED = 0xFF0000, GREEN = 0x00A000, WHITE = 0xFFFFFF, YELLOW = 0x5F5000};
 
 void beep(uint8_t duration, uint8_t cycles){
 
 }
 
-//CLeakSensor *leakSensor[LEAK_CHANELS];
 CLeakSensor leakSensor[] = {
     CLeakSensor(A13), 
     CLeakSensor(A14), 
@@ -52,6 +51,12 @@ CLeakSensor leakSensor[] = {
     CLeakSensor(A0)
     };
 
+volatile int seconds;
+
+ISR(TIMER1_COMPA_vect){
+    seconds++;
+}
+
 void setup(){
     pinMode(PIN_BUTTON, INPUT_PULLUP);
     pinMode(PIN_BUZZER, OUTPUT);
@@ -70,6 +75,21 @@ void setup(){
         stripLED.show();
         leakSensor[j].print();
     }
+
+    // инициализация Timer1
+    cli();  // отключить глобальные прерывания
+    TCCR1A = 0;   // установить регистры в 0
+    TCCR1B = 0;
+
+    OCR1A = 15624; // установка регистра совпадения
+
+    TCCR1B |= (1 << WGM12);  // включить CTC режим 
+    TCCR1B |= (1 << CS10); // Установить биты на коэффициент деления 1024
+    TCCR1B |= (1 << CS12);
+
+    TIMSK1 |= (1 << OCIE1A);  // включить прерывание по совпадению таймера 
+    sei(); // включить глобальные прерывания
+
     Serial.println("-------------------------------------------");
     /*Blynk.begin(auth);
     Ethernet.init(53);
@@ -85,12 +105,15 @@ void setup(){
 }
 
 void loop(){
+    static uint8_t sensorCounter = 0;
+
     const uint32_t t = millis();
     static uint32_t prev_t = t;
     static bool prev_but = true;
     const bool but = digitalRead(PIN_BUTTON);
 
     if (t - prev_t > 1000) {
+        Serial.println(seconds);
         digitalWrite(PIN_BUZZER, !but);
         prev_t = t;
     }
@@ -101,8 +124,7 @@ void loop(){
         Serial.println(but);
         
     }
-    for (int i = 0; i < LEAK_CHANELS; i++){
-        CLeakSensor::EState state = leakSensor[i].getState();
-        if (leakSensor[i].getChange()) leakSensor[i].print();
-    }
+    CLeakSensor::EState state = leakSensor[sensorCounter].getState();
+    if (leakSensor[sensorCounter].getChange()) leakSensor[sensorCounter].print();
+    if (++sensorCounter == LEAK_CHANELS) sensorCounter = 0;
 }
