@@ -15,6 +15,9 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "ios": "cpp",
-        "*.idl": "cpp"
+        "*.idl": "cpp",
+        "iosfwd": "cpp",
+        "xlocbuf": "cpp",
+        "xiosbase": "cpp"
     }
 }

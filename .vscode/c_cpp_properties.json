@@ -23,7 +23,9 @@
                     "C:\\Users\\Alex\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.2\\**",
                     "C:\\Users\\Alex\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\**",
                     "C:\\Users\\Alex\\Documents\\Arduino\\libraries\\Blynk\\src\\**",
-                    "C:\\Users\\Alex\\Documents\\Arduino\\libraries\\Ethernet\\**" 
+                    "C:\\Users\\Alex\\Documents\\Arduino\\libraries\\Ethernet\\**",
+                    "C:\\Users\\Alex\\Documents\\Arduino\\libraries\\UniversalKeyboardDriver\\**",
+                    "C:\\Users\\Alex\\Documents\\Arduino\\libraries\\Adafruit_ADS1X15\\**"
                 ]
             },
             "defines": ["USBCON"],
