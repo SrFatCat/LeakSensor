@@ -23,3 +23,7 @@
 ![](https://github.com/SrFatCat/LeakSensor/blob/master/image/PCB_LeakSensor.png)
 ![](https://github.com/SrFatCat/LeakSensor/blob/master/image/LeakSensor1.jpg)
 ![](https://github.com/SrFatCat/LeakSensor/blob/master/image/LeakSensor2.jpg)
+
+### Демо видео
+<sup>Ни хрена не понятно, зато лампочки мигают</sup>
+[видео](https://youtu.be/1K_5AmTVZUc "видео")
