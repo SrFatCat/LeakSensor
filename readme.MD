@@ -15,3 +15,11 @@
 ### Схема принципиальная
 <sup>Примитивная</sup>
 ![](https://github.com/SrFatCat/LeakSensor/blob/master/image/Schematic_LeakSensor.png)
+Практически, всё модульное. Основной модуль МК Arduino Mega 2560, внешний АЦП - модуль ADS1115, Сеть - модуль WS5500, питание WS2812 - модуль LM2596, разъемы для подключения шлейфов - плинты на плату KRON (изуверски извлеченные из старой патч-панели). Всё питается через штатное подключение Меги 12В от соседнего БИРПа.
+
+### Печатная плата и исполнение
+<sup>Инвалидское</sup>
+Печатная плата односторонняя для ЛУТ или домашнего фотополимера. Односторонняя с перемычками. Делалось все под корпус для электрического щитка IEK, крепление на DIN-рейку.
+![](https://github.com/SrFatCat/LeakSensor/blob/master/image/PCB_LeakSensor.png)
+![](https://github.com/SrFatCat/LeakSensor/blob/master/image/LeakSensor1.jpg)
+![](https://github.com/SrFatCat/LeakSensor/blob/master/image/LeakSensor2.jpg)
