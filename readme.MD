@@ -14,3 +14,4 @@
 
 ### Схема принципиальная
 <sup>Примитивная</sup>
+[](https://github.com/SrFatCat/LeakSensor/blob/master/image/Schematic_LeakSensor.png)
